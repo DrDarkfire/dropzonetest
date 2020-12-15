@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>serviceWorker.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+serviceWorker.js</font>
+</center></td></tr></table>
+<pre><span class="s0">// This optional code is used to register a service worker.</span>
+<span class="s0">// register() is not called by default.</span>
+
+<span class="s0">// This lets the app load faster on subsequent visits in production, and gives</span>
+<span class="s0">// it offline capabilities. However, it also means that developers (and users)</span>
+<span class="s0">// will only see deployed updates on subsequent visits to a page, after all the</span>
+<span class="s0">// existing tabs open on the page have been closed, since previously cached</span>
+<span class="s0">// resources are updated in the background.</span>
+
+<span class="s0">// To learn more about the benefits of this model and instructions on how to</span>
+<span class="s0">// opt-in, read https://bit.ly/CRA-PWA</span>
+
+<span class="s2">const </span><span class="s1">isLocalhost = Boolean(</span>
+  <span class="s1">window.location.hostname === </span><span class="s3">'localhost' </span><span class="s1">||</span>
+    <span class="s0">// [::1] is the IPv6 localhost address.</span>
+    <span class="s1">window.location.hostname === </span><span class="s3">'[::1]' </span><span class="s1">||</span>
+    <span class="s0">// 127.0.0.0/8 are considered localhost for IPv4.</span>
+    <span class="s1">window.location.hostname.match(</span>
+      <span class="s4">/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/</span>
+    <span class="s1">)</span>
+<span class="s1">)</span><span class="s2">;</span>
+
+<span class="s2">export function </span><span class="s1">register(config) {</span>
+  <span class="s2">if </span><span class="s1">(process.env.NODE_ENV === </span><span class="s3">'production' </span><span class="s1">&amp;&amp; </span><span class="s3">'serviceWorker' </span><span class="s2">in </span><span class="s1">navigator) {</span>
+    <span class="s0">// The URL constructor is available in all browsers that support SW.</span>
+    <span class="s2">const </span><span class="s1">publicUrl = </span><span class="s2">new </span><span class="s1">URL(process.env.PUBLIC_URL</span><span class="s2">, </span><span class="s1">window.location.href)</span><span class="s2">;</span>
+    <span class="s2">if </span><span class="s1">(publicUrl.origin !== window.location.origin) {</span>
+      <span class="s0">// Our service worker won't work if PUBLIC_URL is on a different origin</span>
+      <span class="s0">// from what our page is served on. This might happen if a CDN is used to</span>
+      <span class="s0">// serve assets; see https://github.com/facebook/create-react-app/issues/2374</span>
+      <span class="s2">return;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">window.addEventListener(</span><span class="s3">'load'</span><span class="s2">, </span><span class="s1">() =&gt; {</span>
+      <span class="s2">const </span><span class="s1">swUrl = </span><span class="s3">`</span><span class="s1">${process.env.PUBLIC_URL}</span><span class="s3">/service-worker.js`</span><span class="s2">;</span>
+
+      <span class="s2">if </span><span class="s1">(isLocalhost) {</span>
+        <span class="s0">// This is running on localhost. Let's check if a service worker still exists or not.</span>
+        <span class="s1">checkValidServiceWorker(swUrl</span><span class="s2">, </span><span class="s1">config)</span><span class="s2">;</span>
+
+        <span class="s0">// Add some additional logging to localhost, pointing developers to the</span>
+        <span class="s0">// service worker/PWA documentation.</span>
+        <span class="s1">navigator.serviceWorker.ready.then(() =&gt; {</span>
+          <span class="s1">console.log(</span>
+            <span class="s3">'This web app is being served cache-first by a service ' </span><span class="s1">+</span>
+              <span class="s3">'worker. To learn more, visit https://bit.ly/CRA-PWA'</span>
+          <span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">})</span><span class="s2">;</span>
+      <span class="s1">} </span><span class="s2">else </span><span class="s1">{</span>
+        <span class="s0">// Is not localhost. Just register service worker</span>
+        <span class="s1">registerValidSW(swUrl</span><span class="s2">, </span><span class="s1">config)</span><span class="s2">;</span>
+      <span class="s1">}</span>
+    <span class="s1">})</span><span class="s2">;</span>
+  <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s2">function </span><span class="s1">registerValidSW(swUrl</span><span class="s2">, </span><span class="s1">config) {</span>
+  <span class="s1">navigator.serviceWorker</span>
+    <span class="s1">.register(swUrl)</span>
+    <span class="s1">.then(registration =&gt; {</span>
+      <span class="s1">registration.onupdatefound = () =&gt; {</span>
+        <span class="s2">const </span><span class="s1">installingWorker = registration.installing</span><span class="s2">;</span>
+        <span class="s2">if </span><span class="s1">(installingWorker == </span><span class="s2">null</span><span class="s1">) {</span>
+          <span class="s2">return;</span>
+        <span class="s1">}</span>
+        <span class="s1">installingWorker.onstatechange = () =&gt; {</span>
+          <span class="s2">if </span><span class="s1">(installingWorker.state === </span><span class="s3">'installed'</span><span class="s1">) {</span>
+            <span class="s2">if </span><span class="s1">(navigator.serviceWorker.controller) {</span>
+              <span class="s0">// At this point, the updated precached content has been fetched,</span>
+              <span class="s0">// but the previous service worker will still serve the older</span>
+              <span class="s0">// content until all client tabs are closed.</span>
+              <span class="s1">console.log(</span>
+                <span class="s3">'New content is available and will be used when all ' </span><span class="s1">+</span>
+                  <span class="s3">'tabs for this page are closed. See https://bit.ly/CRA-PWA.'</span>
+              <span class="s1">)</span><span class="s2">;</span>
+
+              <span class="s0">// Execute callback</span>
+              <span class="s2">if </span><span class="s1">(config &amp;&amp; config.onUpdate) {</span>
+                <span class="s1">config.onUpdate(registration)</span><span class="s2">;</span>
+              <span class="s1">}</span>
+            <span class="s1">} </span><span class="s2">else </span><span class="s1">{</span>
+              <span class="s0">// At this point, everything has been precached.</span>
+              <span class="s0">// It's the perfect time to display a</span>
+              <span class="s0">// &quot;Content is cached for offline use.&quot; message.</span>
+              <span class="s1">console.log(</span><span class="s3">'Content is cached for offline use.'</span><span class="s1">)</span><span class="s2">;</span>
+
+              <span class="s0">// Execute callback</span>
+              <span class="s2">if </span><span class="s1">(config &amp;&amp; config.onSuccess) {</span>
+                <span class="s1">config.onSuccess(registration)</span><span class="s2">;</span>
+              <span class="s1">}</span>
+            <span class="s1">}</span>
+          <span class="s1">}</span>
+        <span class="s1">}</span><span class="s2">;</span>
+      <span class="s1">}</span><span class="s2">;</span>
+    <span class="s1">})</span>
+    <span class="s1">.catch(error =&gt; {</span>
+      <span class="s1">console.error(</span><span class="s3">'Error during service worker registration:'</span><span class="s2">, </span><span class="s1">error)</span><span class="s2">;</span>
+    <span class="s1">})</span><span class="s2">;</span>
+<span class="s1">}</span>
+
+<span class="s2">function </span><span class="s1">checkValidServiceWorker(swUrl</span><span class="s2">, </span><span class="s1">config) {</span>
+  <span class="s0">// Check if the service worker can be found. If it can't reload the page.</span>
+  <span class="s1">fetch(swUrl</span><span class="s2">, </span><span class="s1">{</span>
+    <span class="s1">headers: { </span><span class="s3">'Service-Worker'</span><span class="s1">: </span><span class="s3">'script' </span><span class="s1">}</span><span class="s2">,</span>
+  <span class="s1">})</span>
+    <span class="s1">.then(response =&gt; {</span>
+      <span class="s0">// Ensure service worker exists, and that we really are getting a JS file.</span>
+      <span class="s2">const </span><span class="s1">contentType = response.headers.get(</span><span class="s3">'content-type'</span><span class="s1">)</span><span class="s2">;</span>
+      <span class="s2">if </span><span class="s1">(</span>
+        <span class="s1">response.status === </span><span class="s4">404 </span><span class="s1">||</span>
+        <span class="s1">(contentType != </span><span class="s2">null </span><span class="s1">&amp;&amp; contentType.indexOf(</span><span class="s3">'javascript'</span><span class="s1">) === -</span><span class="s4">1</span><span class="s1">)</span>
+      <span class="s1">) {</span>
+        <span class="s0">// No service worker found. Probably a different app. Reload the page.</span>
+        <span class="s1">navigator.serviceWorker.ready.then(registration =&gt; {</span>
+          <span class="s1">registration.unregister().then(() =&gt; {</span>
+            <span class="s1">window.location.reload()</span><span class="s2">;</span>
+          <span class="s1">})</span><span class="s2">;</span>
+        <span class="s1">})</span><span class="s2">;</span>
+      <span class="s1">} </span><span class="s2">else </span><span class="s1">{</span>
+        <span class="s0">// Service worker found. Proceed as normal.</span>
+        <span class="s1">registerValidSW(swUrl</span><span class="s2">, </span><span class="s1">config)</span><span class="s2">;</span>
+      <span class="s1">}</span>
+    <span class="s1">})</span>
+    <span class="s1">.catch(() =&gt; {</span>
+      <span class="s1">console.log(</span>
+        <span class="s3">'No internet connection found. App is running in offline mode.'</span>
+      <span class="s1">)</span><span class="s2">;</span>
+    <span class="s1">})</span><span class="s2">;</span>
+<span class="s1">}</span>
+
+<span class="s2">export function </span><span class="s1">unregister() {</span>
+  <span class="s2">if </span><span class="s1">(</span><span class="s3">'serviceWorker' </span><span class="s2">in </span><span class="s1">navigator) {</span>
+    <span class="s1">navigator.serviceWorker.ready</span>
+      <span class="s1">.then(registration =&gt; {</span>
+        <span class="s1">registration.unregister()</span><span class="s2">;</span>
+      <span class="s1">})</span>
+      <span class="s1">.catch(error =&gt; {</span>
+        <span class="s1">console.error(error.message)</span><span class="s2">;</span>
+      <span class="s1">})</span><span class="s2">;</span>
+  <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

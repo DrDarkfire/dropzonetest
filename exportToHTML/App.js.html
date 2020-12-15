@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>App.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #e8bf6a;}
+.s5 { color: #bababa;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+App.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">React from </span><span class="s2">'react'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s2">'./App.css'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">DropZone from </span><span class="s2">&quot;./DropZone&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">FileList from </span><span class="s2">&quot;./FileList&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">SimulatePathChange from </span><span class="s2">'./SimulatePathChange'</span>
+<span class="s0">import </span><span class="s1">ProviderLegacy from </span><span class="s2">&quot;./ProviderLegacy&quot;</span><span class="s0">;</span>
+<span class="s3">//import { Provider } from 'react-redux'</span>
+<span class="s3">//import store from 'redux'</span>
+<span class="s3">// ADD THIS CODE TO THE MAIN REACT APP</span>
+<span class="s3">//let DropPath = React.createContext('default/path')</span>
+
+<span class="s3">//export const pathCtx = React.createContext('./');</span>
+<span class="s0">function </span><span class="s1">App() {</span>
+    <span class="s3">// provider is a parent component to pass items between children</span>
+    <span class="s3">//&lt;Provider store={store}&gt;</span>
+    <span class="s3">//           &lt;FileList /&gt;</span>
+    <span class="s3">//           &lt;SimulatePathChange /&gt;</span>
+    <span class="s3">//       &lt;/Provider&gt;</span>
+    <span class="s0">return </span><span class="s1">(</span>
+    <span class="s4">&lt;div </span><span class="s5">className</span><span class="s2">=&quot;App&quot;</span><span class="s4">&gt;</span>
+      <span class="s4">&lt;FileList /&gt;</span>
+      <span class="s4">&lt;SimulatePathChange /&gt;</span>
+    <span class="s4">&lt;/div&gt;</span>
+  <span class="s1">)</span><span class="s0">;</span>
+<span class="s1">}</span>
+
+<span class="s0">export default </span><span class="s1">App</span><span class="s0">;</span>
+</pre>
+</body>
+</html>

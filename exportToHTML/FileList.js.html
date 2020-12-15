@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>FileList.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+.s5 { color: #e8bf6a;}
+.s6 { color: #bababa;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FileList.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">React</span><span class="s0">, </span><span class="s1">{ Component } from </span><span class="s2">&quot;react&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">DropZone from </span><span class="s2">&quot;./DropZone&quot;</span><span class="s0">;</span>
+
+<span class="s0">class </span><span class="s1">FileList </span><span class="s0">extends </span><span class="s1">Component {</span>
+    <span class="s1">state = {</span>
+        <span class="s1">files: [</span>
+            <span class="s2">'WeCan.pdf'</span><span class="s0">,</span>
+            <span class="s2">'PutThe.jpg'</span><span class="s0">,</span>
+            <span class="s2">'FileView.pdf'</span><span class="s0">,</span>
+            <span class="s2">'Here.docx'</span>
+        <span class="s1">]</span>
+    <span class="s1">}</span>
+    <span class="s3">// this is just for our dummy set of files</span>
+    <span class="s1">handleDrop = (files) =&gt; {</span>
+        <span class="s0">let </span><span class="s1">fileList = </span><span class="s0">this</span><span class="s1">.state.files</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">let </span><span class="s1">i = </span><span class="s4">0</span><span class="s0">; </span><span class="s1">i&lt; files.length</span><span class="s0">; </span><span class="s1">i++) {</span>
+            <span class="s0">if </span><span class="s1">(!files[i].name) </span><span class="s0">return</span>
+            <span class="s1">fileList.push(files[i].name)</span>
+        <span class="s1">}</span>
+        <span class="s0">this</span><span class="s1">.setState({files: fileList})</span>
+    <span class="s1">}</span>
+
+    <span class="s1">render() {</span>
+        <span class="s0">let </span><span class="s1">i</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">(</span>
+            <span class="s5">&lt;DropZone </span><span class="s6">handleDrop</span><span class="s2">=</span><span class="s1">{</span><span class="s0">this</span><span class="s1">.handleDrop}</span><span class="s5">&gt;</span>
+                <span class="s5">&lt;div </span><span class="s6">style</span><span class="s2">=</span><span class="s1">{{height: </span><span class="s4">300</span><span class="s0">, </span><span class="s1">width: </span><span class="s4">250</span><span class="s1">}}</span><span class="s5">&gt;</span>
+                    <span class="s1">{</span><span class="s0">this</span><span class="s1">.state.files.map((file) =&gt;</span>
+                        <span class="s5">&lt;div </span><span class="s6">key</span><span class="s2">=</span><span class="s1">{i}</span><span class="s5">&gt;</span><span class="s1">{file}</span><span class="s5">&lt;/div&gt;</span>
+                    <span class="s1">)}</span>
+                <span class="s5">&lt;/div&gt;</span>
+            <span class="s5">&lt;/DropZone&gt;</span>
+        <span class="s1">)</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s0">export default </span><span class="s1">FileList</span></pre>
+</body>
+</html>

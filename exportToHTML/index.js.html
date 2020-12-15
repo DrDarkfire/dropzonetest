@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>index.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #e8bf6a;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+index.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">React from </span><span class="s2">'react'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">ReactDOM from </span><span class="s2">'react-dom'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s2">'./index.css'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">App from </span><span class="s2">'./App'</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">* as serviceWorker from </span><span class="s2">'./serviceWorker'</span><span class="s0">;</span>
+<span class="s3">//import { Provider } from 'react-redux'</span>
+<span class="s3">//import { createStore} from &quot;redux&quot;;</span>
+<span class="s3">//import paths from &quot;./redux/paths&quot;;</span>
+<span class="s3">// create the reducer that will let us change the path</span>
+<span class="s3">// function pathReducer(state = { path: &quot;./&quot;}, action) {</span>
+<span class="s3">//     if (action.path !== state.path)</span>
+<span class="s3">//         return { path: action.path }</span>
+<span class="s3">// }</span>
+
+<span class="s3">//const store = createStore(paths)</span>
+<span class="s3">//&lt;Provider store={store}&gt;</span>
+<span class="s3">//       &lt;App /&gt;</span>
+<span class="s3">//     &lt;/Provider&gt;</span>
+
+<span class="s1">ReactDOM.render(</span>
+  <span class="s4">&lt;React.StrictMode&gt;</span>
+    <span class="s4">&lt;App /&gt;</span>
+  <span class="s4">&lt;/React.StrictMode&gt;</span><span class="s0">,</span>
+  <span class="s1">document.getElementById(</span><span class="s2">'root'</span><span class="s1">)</span>
+<span class="s1">)</span><span class="s0">;</span>
+
+<span class="s3">// If you want your app to work offline and load faster, you can change</span>
+<span class="s3">// unregister() to register() below. Note this comes with some pitfalls.</span>
+<span class="s3">// Learn more about service workers: https://bit.ly/CRA-PWA</span>
+<span class="s1">serviceWorker.unregister()</span><span class="s0">;</span>
+</pre>
+</body>
+</html>

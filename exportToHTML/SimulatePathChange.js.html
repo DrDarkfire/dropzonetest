@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>SimulatePathChange.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #e8bf6a;}
+.s4 { color: #bababa;}
+.s5 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SimulatePathChange.js</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">React</span><span class="s0">, </span><span class="s1">{ Component } from </span><span class="s2">'react'</span>
+<span class="s0">import </span><span class="s1">{PathCtx} from </span><span class="s2">&quot;./ProviderLegacy&quot;</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">{ connect } from </span><span class="s2">'react-redux'</span>
+<span class="s0">import </span><span class="s1">{ changePath } from </span><span class="s2">&quot;./redux/actions&quot;</span><span class="s0">;</span>
+
+<span class="s0">class </span><span class="s1">SimulatePathChange </span><span class="s0">extends </span><span class="s1">Component {</span>
+    <span class="s1">constructor(props) {</span>
+        <span class="s0">super</span><span class="s1">(props)</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.state = {changePath: </span><span class="s2">''</span><span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s1">render() {</span>
+        <span class="s0">return</span><span class="s1">(</span>
+            <span class="s3">&lt;div&gt;</span>
+                <span class="s3">&lt;button </span><span class="s4">onClick</span><span class="s2">=</span><span class="s1">{</span><span class="s0">this</span><span class="s1">.handleChangePath}</span><span class="s3">&gt;</span><span class="s1">Simulate Path Change</span><span class="s3">&lt;/button&gt;</span>
+            <span class="s3">&lt;/div&gt;</span>
+        <span class="s1">)</span>
+    <span class="s1">}</span>
+
+    <span class="s1">handleChangePath() {</span>
+        <span class="s0">this</span><span class="s1">.props.changePath(</span><span class="s2">'changed path'</span><span class="s1">)</span>
+    <span class="s1">}</span>
+<span class="s1">} </span><span class="s5">//export default connect(null, { changePath })(SimulatePathChange)</span>
+<span class="s0">export default </span><span class="s1">SimulatePathChange</span></pre>
+</body>
+</html>
